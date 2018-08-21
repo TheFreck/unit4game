@@ -1,0 +1,213 @@
+body{
+    position: relative;
+    background: darkcyan;
+}
+label{
+    margin: auto;
+}
+h1{
+    margin: auto;
+    font-size: 24px;
+}
+section{
+    position: absolute;
+    background: red;
+    border: outset;
+    width: 100px;
+    height: 20px;
+    z-index: 11;
+    
+}
+
+.nav{
+    position: sticky;
+    height: 50px;
+    background: darkred;
+    visibility: "hidden";
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 5% 10% 45%;
+    color: lightgray;
+    vertical-align: middle;
+}
+.navItem{
+    background: darkolivegreen;
+}
+.body{
+    position: relative;
+    background: darkmagenta;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 750px;
+}
+.pick{
+    position: relative;
+    left: 12%;
+    color: white;
+}
+.bench{
+    position: absolute;
+    background: darkkhaki;
+    width: 100%;
+    height: 50%;
+    top: 0;
+}
+.user{
+    text-align: right;
+    margin: auto 0 auto auto;
+}
+.game{
+    text-align: left;
+    margin: auto auto auto 0;
+}
+.box{
+    position: absolute;
+    background: darkgoldenrod;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+}
+.left{
+    position: relative;
+    background: darkolivegreen;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+}
+.middle{
+    position: relative;
+    background: peru;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+.scores{
+    position: relative;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 40% 60%;
+    top: 0;
+
+}
+.scoreboard{
+    position: absolute;
+    width: 50%;
+    line-height: 3;
+    padding: 1% 5%;
+}
+.arena{
+    position: absolute;
+    background: olive;
+    width: 100%;
+    height: 60%;
+    bottom: 0;
+}
+.leftish{
+    position: absolute;
+    left: 0;
+    background: saddlebrown;
+    width: 50%;
+}
+.rightish{
+    position: absolute;
+    right: 0;
+    background: sienna;
+    width: 50%;
+}
+.right{
+    position: relative;
+    background: darkorange;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+}
+.footer{
+    position: sticky;
+    background: darkgoldenrod;
+    bottom: 0;
+    height: 75px;
+}
+.plane{
+    background: orchid;
+    height: 100px;
+    width: 100px;
+    border: inset;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+.button{
+    position: relative;
+    width: 100px;
+    height: 45px;
+    color: darkblue;
+    border: outset;
+    margin: auto;
+    text-align: center;
+
+}
+.dugout{
+    position: relative;
+}
+
+/* toggle switch */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {display:none;}
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(184, 1, 1);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(83, 1, 1);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px rgb(83, 1, 1);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

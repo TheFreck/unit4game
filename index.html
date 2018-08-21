@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star Wars Game</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <nav class="nav">
+        
+        <button class="button" type="button" value="add contender" onclick="addContenders()">add contenders</button>
+        <button class="button" type="button" value="begin" onclick="begin()">prepare for battle!</button>
+        <button class="button" type="button" onclick="fight()">Fight!</button>
+        <h1 class="user">Dog Fight</h1>
+        <label class="switch">
+            <input id="airVground" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <h1 class="game">Bombing Run</h1>
+        <h1>Battle of Wings!</h1>
+    </nav>
+
+    <h1 class="pick">Add Contenders to Start</h1>
+    
+    <div class="dugout"></div>
+
+    <div class="body">
+        <div class="left" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <userBench id="userBench" class="user bench" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </userBench>
+
+            <userBox id="userBox" class="user box" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </userBox>
+        </div>
+
+        <div id="scorePanel" class="middle">
+            <div class="scores">
+                <div id="userScoreboard" class="scoreboard leftish">
+                    <h1>Team Stats <span id="userID"></span></h1>
+                    <h2>User HP: <span id="userHP"></span></h2>
+                    <h2>User Air Attack: <span id="userAirAttack"></span></h2>
+                    <h2>User Ground Attack: <span id="userGroundAttack"></span></h2>
+    
+                </div>
+    
+                <div id="gameScoreboard" class="scoreboard rightish">
+                    <h1>Game Stats <span id="gameID"></span></h1>
+                    <h2>Game HP: <span id="gameHP"></span></h2>
+                    <h2>Game Air Attack: <span id="gameAirAttack"></span></h2>
+                    <h2>Game Ground Attack: <span id="gameGroundAttack"></span></h2>
+    
+                </div>
+
+            </div>
+            
+            <div id="battleArena" class="arena">
+                <div id="userScoreboard" class="scoreboard leftish">
+                    <h2>fighter ID: <span id="fighterID"></span></h2>
+                    <h2>fighter HP: <span id="fighterHP"></span></h2>
+                    <h2>fighter Air Attack: <span id="fighterAirAttack"></span></h2>
+                    <h2>fighter Ground Attack: <span id="fighterGroundAttack"></span></h2>
+                    <h2>Fighter Attack:<span id="fighterAttack"></span></h2>
+                </div>
+    
+                <div id="gameScoreboard" class="scoreboard rightish">
+                    <h2>Game Fighter ID: <span id="gameFighterID"></span></h2>
+                    <h2>Game Fighter HP: <span id="gameFighterHP"></span></h2>
+                    <h2>Game Fighter Air Attack: <span id="gameFighterAirAttack"></span></h2>
+                    <h2>Game Fighter Ground Attack: <span id="gameFighterGroundAttack"></span></h2>
+                    <h2>Game Fighter Attack:<span id="gameAttack"></span></h2>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right">
+            <gameBench id="gameBench" class="game bench" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </gameBench>
+
+            <gameBox id="gameBox" class="game box" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </gameBox>
+
+        </div>
+
+    </div>
+
+    <footer class="footer"></footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./assets/javascript/game.js"></script>
+</body>
+
+</html>
