@@ -1,6 +1,6 @@
 body{
     position: relative;
-    background: darkcyan;
+    background: rgb(148, 82, 1);
 }
 label{
     margin: auto;
@@ -10,12 +10,12 @@ h1{
     font-size: 24px;
 }
 section{
-    position: absolute;
+    position: relative;
     background: red;
     border: outset;
     width: 100px;
     height: 20px;
-    z-index: 11;
+    display: block;
     
 }
 
@@ -25,12 +25,16 @@ section{
     background: darkred;
     visibility: "hidden";
     display: grid;
-    grid-template-columns: 10% 10% 10% 10% 5% 10% 45%;
+    grid-template-columns: 10% 10% 10% 10% 5% 10% 7.5% 7.5% 30%;
     color: lightgray;
     vertical-align: middle;
 }
 .navItem{
-    background: darkolivegreen;
+    position: relative;
+}
+.indent{
+    position: relative;
+    left: 10%;
 }
 .body{
     position: relative;
@@ -41,8 +45,9 @@ section{
 }
 .pick{
     position: relative;
-    left: 12%;
+    left: 5%;
     color: white;
+    font-size: 55px;
 }
 .bench{
     position: absolute;
@@ -86,13 +91,12 @@ section{
     position: relative;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 40% 60%;
     top: 0;
 
 }
 .scoreboard{
     position: absolute;
-    width: 50%;
+    width: 40%;
     line-height: 3;
     padding: 1% 5%;
 }
@@ -107,13 +111,11 @@ section{
     position: absolute;
     left: 0;
     background: saddlebrown;
-    width: 50%;
 }
 .rightish{
     position: absolute;
     right: 0;
     background: sienna;
-    width: 50%;
 }
 .right{
     position: relative;

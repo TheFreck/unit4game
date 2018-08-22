@@ -4,14 +4,14 @@
 
 var interceptor = {
     name: "interceptor",
-    HP: 100,
+    HP: 125,
     groundAttack: 1,
     airAttack: 12,
 }
 
 var fighter = {
     name: "fighter",
-    HP: 125,
+    HP: 150,
     groundAttack: 4,
     airAttack: 9,
 }
@@ -32,7 +32,7 @@ var heavyBomber = {
 
 var groundDefense = {
     name: "Anti Aircraft",
-    HP: 175,
+    HP: 200,
     groundAttack: 0,
     airAttack: 13
 }
@@ -55,11 +55,28 @@ var HP = [];
 var Air = [];
 var Ground = [];
 var inGame = false;
+var wins = 0;
+var losses = 0;
+
+
 
 // the players enter the arena
 
+
+
+
 // add contenders button
+
+function cleanup(){
+    $("#userBench").empty();
+    $("#userBox").empty();
+    $("#gameBench").empty();
+    $("#gameBox").empty();
+}
+
 function addContenders(){
+
+    cleanup();
 
     if(inGame===false){
         
@@ -90,7 +107,6 @@ function addPilots(quantity,type){
         var contender = $("<plane>");
         contender.addClass("plane");
         contender.attr("id", ID);
-        ID++;
         contender.attr("planeType", planeType);
         contender.attr("HP", planeType.HP);
         HP.push(planeType.HP);
@@ -101,24 +117,33 @@ function addPilots(quantity,type){
         contender.attr("ondragstart", "drag(event)");
         contender.attr("draggable", "true");
         contender.attr("onclick", "clickme()")
-        contender.text(planeType.name + "HP: " + planeType.HP);
         contender.appendTo(".dugout");
         
+        // label it
         var nameBanner = $("<section>");
+        nameBanner.attr("id",ID + 10);
+        nameBanner.text(planeType.name);
+        
         var hpBanner = $("<section>");
+        hpBanner.attr("id",ID + 20);
+        hpBanner.text(`HP: ${HP[ID]}`);
+
         var airBanner = $("<section>");
+        airBanner.attr("id",ID + 30);
+        airBanner.text(`Air: ${Air[ID]}`);
+        
         var groundBanner = $("<section>");
+        groundBanner.attr("id",ID + 40);
+        groundBanner.text(`Ground: ${Ground[ID]}`);
+        
         contender.append(nameBanner);
         contender.append(hpBanner);
         contender.append(airBanner);
         contender.append(groundBanner);
-    
+        
+        ID++;
     }
 }
-
-
-
-
 
 function allowDrop(event) {
     event.preventDefault();
@@ -141,7 +166,7 @@ function begin(){
         var dugoutChildren = $(".dugout").children();
         dragElement = dugoutChildren;
         $("#gameBench").append(dugoutChildren);
-        $(".pick").text("Move one of your planes into the arena. Then 'Fight!'");
+        $(".pick").text("Move one of your planes into the arena. Then 'Fight!'... repeatedly");
     
         if(Math.random() > 0.5){
             $("gameBench plane:last-child").appendTo("#gameBox");
@@ -162,20 +187,21 @@ $("#airVground").click(function(){
 })
 
 
+
+
+
+
+// fight!
+
 var userBench = $("#userBench")
 var gameBench = $("#gameBench")
 var userBox = $("#userBox");
 var gameBox = $("#gameBox");
 
-// fight!
 function fight(){
     if(inGame===true){
 
-    
-
     var attackIncrease = 1;
-        
-
 
     // user stats
     var userChild = userBox.children();
@@ -240,29 +266,30 @@ function fight(){
     
     if(airVground==="ground"){
         
+        // creating a random number that stays close to 1 for attack strength
         userAttackStrength = Math.pow(Math.random(), 5);
         gameAttackStrength = Math.pow(Math.random(), 5);
 
         if(gameChild.attr("class")==="ground"){
-
-            userAttack = gameFighterGroundAttack * gameAttackStrength;
-            gameAttack = fighterAirAttack * userAttackStrength;
+            console.log("game Ground");
+            userAttack = gameFighterAirAttack * gameAttackStrength;
+            gameAttack = fighterGroundAttack * userAttackStrength;
             HP[userID] -= gameFighterAirAttack * gameAttackStrength;
             HP[gameID] -= fighterGroundAttack * userAttackStrength;
             Air[userID] += attackIncrease;
             Ground[gameID] += attackIncrease;
             
         }else if(userChild.attr("class")==="ground"){
-            
-            userAttack = gameFighterAirAttack * gameAttackStrength;
-            gameAttack = fighterGroundAttack * userAttackStrength;
+            console.log("user Ground");
+            userAttack = gameFighterGroundAttack * gameAttackStrength;
+            gameAttack = fighterAirAttack * userAttackStrength;
             HP[userID] -= gameFighterGroundAttack * gameAttackStrength;
             HP[gameID] -= fighterAirAttack * userAttackStrength;
             Ground[userID] += attackIncrease;
             Air[gameID] += attackIncrease;
 
         }else{
-
+            console.log("both air");
             userAttack = gameFighterAirAttack * gameAttackStrength;
             gameAttack = fighterAirAttack * userAttackStrength;
             HP[userID] -= gameFighterAirAttack * gameAttackStrength;
@@ -273,30 +300,47 @@ function fight(){
         }
 
     }
+
+    if(userBench.children().length === 0){
+        userHP = parseInt(fighterHP);
+        userAirAttack = parseInt(fighterAirAttack)
+        userGroundAttack = parseInt(fighterGroundAttack)
+        
+        gameHP = parseInt(gameFighterHP);
+        gameAirAttack = parseInt(gameFighterAirAttack)
+        gameGroundAttack = parseInt(gameFighterGroundAttack)
+    }else
+    if(userBox.children().length === 0){
+        userHP = parseInt(userBenchHP);
+        userAirAttack = parseInt(userBenchAir);
+        userGroundAttack = parseInt(userBenchGround);
+
+        gameHP = parseInt(gameBenchHP);
+        gameAirAttack = parseInt(gameBenchAir);
+        gameGroundAttack = parseInt(gameBenchGround);
+    }else
+    if(gameBench.children().length > 0 && gameBench.children().length > 0){
+        userHP = parseInt(fighterHP) + parseInt(userBenchHP);
+        userAirAttack = parseInt(fighterAirAttack) + parseInt(userBenchAir);
+        userGroundAttack = parseInt(fighterGroundAttack) + parseInt(userBenchGround);
+        
+        gameHP = parseInt(gameFighterHP) + parseInt(gameBenchHP);
+        gameAirAttack = parseInt(gameFighterAirAttack) + parseInt(gameBenchAir);
+        gameGroundAttack = parseInt(gameFighterGroundAttack) + parseInt(gameBenchGround);
+    }
     
-    userHP = parseInt(fighterHP) + parseInt(userBenchHP);
-    userAirAttack = parseInt(fighterAirAttack) + parseInt(userBenchAir);
-    userGroundAttack = parseInt(fighterGroundAttack) + parseInt(userBenchGround);
     
-    gameHP = parseInt(gameFighterHP) + parseInt(gameBenchHP);
-    gameAirAttack = parseInt(gameFighterAirAttack) + parseInt(gameBenchAir);
-    gameGroundAttack = parseInt(gameFighterGroundAttack) + parseInt(gameBenchGround);
+
     
     
     // team stats
     $("#userHP").text(Math.floor(userHP));
-    console.log("userHP",userHP);
     $("#userAirAttack").text(Math.floor(userAirAttack));
-    console.log("userAirAttack",userAirAttack);
     $("#userGroundAttack").text(Math.floor(userGroundAttack));
-    console.log("userGroundAttack",userGroundAttack);
     
     $("#gameHP").text(Math.floor(gameHP));
-    console.log("gameHP",gameHP);
     $("#gameAirAttack").text(Math.floor(gameAirAttack));
-    console.log("gameAir",gameAirAttack);
     $("#gameGroundAttack").text(Math.floor(gameGroundAttack));
-    console.log("gameGroundAttack",gameGroundAttack);
     
     // individual stats
     $("#fighterID").text(userID);
@@ -320,36 +364,52 @@ function fight(){
 
     // dying and losing or winning if you're so lucky
     for(var i=0; i<4; i++){
-        if(HP[i]<0){
+        if(HP[i] <= 0){
+            HP[i] = 1;
             $(".pick").text("someone just died");
+            
+            userBox.children().appendTo(userBench);
+            gameBox.children().appendTo(gameBench);
             document.getElementById(i).remove();
-            if(userHP <= 0){
-                $(".pick").text("You Lose");
-                //user loses
-                console.log("user loses");
-                inGame = false;
+
+            if(userBench.children().length===0){
+                $(".pick").text("You Lose!")
+                inGame = false
                 losses ++;
             }
-            if(gameHP <= 0){
-                $(".pick").text("You Win!!!");
-                //game loses
-                console.log("game loses");
-                inGame = false;
+            if(gameBench.children().length===0){
+                $(".pick").text("You win!")
+                inGame = false
                 wins ++;
             }
         }
     }
+    
+    
+    $("#wins").text(wins);
+    $("#losses").text(losses);
 
-console.log("HP",HP);
-console.log("Air",Air);
-console.log("Ground",Ground);
+
+
+    document.getElementById(20).innerHTML = `HP: ${Math.floor(HP[0])}`;
+    document.getElementById(21).innerHTML = `HP: ${Math.floor(HP[1])}`;
+    document.getElementById(22).innerHTML = `HP: ${Math.floor(HP[2])}`;
+    document.getElementById(23).innerHTML = `HP: ${Math.floor(HP[3])}`;
+    document.getElementById(30).innerHTML = `Air: ${Air[0]}`;
+    document.getElementById(31).innerHTML = `Air: ${Air[1]}`;
+    document.getElementById(32).innerHTML = `Air: ${Air[2]}`;
+    document.getElementById(33).innerHTML = `Air: ${Air[3]}`;
+    document.getElementById(40).innerHTML = `Ground: ${Ground[0]}`;
+    document.getElementById(41).innerHTML = `Ground: ${Ground[1]}`;
+    document.getElementById(42).innerHTML = `Ground: ${Ground[2]}`;
+    document.getElementById(43).innerHTML = `Ground: ${Ground[3]}`;
 }
 }
 
 
 /*
-    -fix the scoreboard so that the top is balanced and the bottom shows for ground missions
-    -attach stats to the banners on each plane and space out the banners so they're all visible
-    -clean up the team scoreboard so it doesn't show NaN when only one team mate remains
+    
+    
+    -fix the winning and losing conditions and add wins/loss counters
 */
 

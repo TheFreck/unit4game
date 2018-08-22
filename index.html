@@ -12,19 +12,21 @@
 <body>
     <nav class="nav">
         
-        <button class="button" type="button" value="add contender" onclick="addContenders()">add contenders</button>
-        <button class="button" type="button" value="begin" onclick="begin()">prepare for battle!</button>
-        <button class="button" type="button" onclick="fight()">Fight!</button>
-        <h1 class="user">Dog Fight</h1>
+        <button class="button navItem" type="button" value="add contender" onclick="addContenders()">add contenders</button>
+        <button class="button navItem" type="button" value="begin" onclick="begin()">prepare for battle!</button>
+        <button class="button navItem" type="button" onclick="fight()">Fight!</button>
+        <h1 class="user navItem">Dog Fight</h1>
         <label class="switch">
             <input id="airVground" type="checkbox">
             <span class="slider round"></span>
         </label>
-        <h1 class="game">Bombing Run</h1>
+        <h1 class="game navItem">Bombing Run</h1>
+        <h1 class="navItem">Wins: <span id="wins"></span></h1>
+        <h1 class="navItem">Losses: <span id="losses"></span></h1>
         <h1>Battle of Wings!</h1>
     </nav>
 
-    <h1 class="pick">Add Contenders to Start</h1>
+    <h1 class="pick">Choose dogfight or bombing run. Then add Contenders to Start</h1>
     
     <div class="dugout"></div>
 
@@ -40,24 +42,24 @@
         <div id="scorePanel" class="middle">
             <div class="scores">
                 <div id="userScoreboard" class="scoreboard leftish">
-                    <h1>Team Stats <span id="userID"></span></h1>
-                    <h2>User HP: <span id="userHP"></span></h2>
-                    <h2>User Air Attack: <span id="userAirAttack"></span></h2>
-                    <h2>User Ground Attack: <span id="userGroundAttack"></span></h2>
+                    <h1>User Team Stats <span id="userID"></span></h1>
+                    <h2 class="indent">HP: <span id="userHP"></span></h2>
+                    <h2 class="indent">Air Attack: <span id="userAirAttack"></span></h2>
+                    <h2 class="indent">Ground Attack: <span id="userGroundAttack"></span></h2>
     
                 </div>
     
                 <div id="gameScoreboard" class="scoreboard rightish">
-                    <h1>Game Stats <span id="gameID"></span></h1>
-                    <h2>Game HP: <span id="gameHP"></span></h2>
-                    <h2>Game Air Attack: <span id="gameAirAttack"></span></h2>
-                    <h2>Game Ground Attack: <span id="gameGroundAttack"></span></h2>
+                    <h1>Game Team Stats <span id="gameID"></span></h1>
+                    <h2 class="indent">HP: <span id="gameHP"></span></h2>
+                    <h2 class="indent">Air Attack: <span id="gameAirAttack"></span></h2>
+                    <h2 class="indent">Ground Attack: <span id="gameGroundAttack"></span></h2>
     
                 </div>
 
             </div>
             
-            <div id="battleArena" class="arena">
+           <!--  <div id="battleArena" class="arena">
                 <div id="userScoreboard" class="scoreboard leftish">
                     <h2>fighter ID: <span id="fighterID"></span></h2>
                     <h2>fighter HP: <span id="fighterHP"></span></h2>
@@ -73,7 +75,7 @@
                     <h2>Game Fighter Ground Attack: <span id="gameFighterGroundAttack"></span></h2>
                     <h2>Game Fighter Attack:<span id="gameAttack"></span></h2>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
