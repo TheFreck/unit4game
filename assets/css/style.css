@@ -11,12 +11,12 @@ h1{
 }
 section{
     position: relative;
-    background: red;
+    background: rgb(201, 18, 18);
     border: outset;
     width: 100px;
     height: 20px;
     display: block;
-    
+    color: lightgray;;
 }
 
 .nav{
